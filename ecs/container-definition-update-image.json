@@ -4,7 +4,7 @@
         "logDriver": "awslogs",
         "options": {
           "awslogs-group": "ch-dev-log-group",
-          "awslogs-region": "eu-west-1",
+          "awslogs-region": "us-west-2",
           "awslogs-stream-prefix": "ecs"
         }
       },
@@ -29,20 +29,6 @@
         {
           "name": "SERVER_PORT",
           "value": "8080"
-        }
-      ],
-      "secrets": [
-        {
-          "valueFrom": "ch-dev-user-db-url",
-          "name": "SPRING_DATASOURCE_URL"
-        },
-        {
-          "valueFrom": "ch-dev-user-db-username",
-          "name": "SPRING_DATASOURCE_USERNAME"
-        },
-        {
-          "valueFrom": "ch-dev-user-db-password",
-          "name": "SPRING_DATASOURCE_PASSWORD"
         }
       ],
       "memory": 512,
