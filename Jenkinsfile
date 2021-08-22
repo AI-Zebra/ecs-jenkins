@@ -10,6 +10,11 @@ pipeline {
         timestamps()
     }
 
+    tools {
+        //jdk 'openjdk-11'
+        maven 'maven 3.6.3'
+        //dockerTool 'docker-latest'
+    }
 
     environment {
         SECRET_KEY = credentials('secret-key') //Retrieved from AKV
