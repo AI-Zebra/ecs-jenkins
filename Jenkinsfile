@@ -27,7 +27,7 @@ pipeline {
         AWS_ECS_NETWORK_MODE = 'awsvpc'
         AWS_ECS_CPU = '256'
         AWS_ECS_MEMORY = '512'
-        AWS_ECS_CLUSTER = 'ch-dev'
+        AWS_ECS_CLUSTER = 'ecsakv'
         AWS_ECS_TASK_DEFINITION_PATH = './ecs/container-definition-update-image.json'
     }
 
