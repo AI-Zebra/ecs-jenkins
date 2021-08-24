@@ -9,7 +9,7 @@ import java.security.Key
 import java.security.spec.KeySpec
 
 
-String encrypt(String strToEncrypt) {
+String encrypt(String strToEncrypt, String encryptionKey) {
 
     String encryptionKey = "1234567912345678" //Paste your key here
     Key aesKey = new SecretKeySpec(encryptionKey.getBytes("UTF-8"), "AES")
@@ -20,7 +20,7 @@ String encrypt(String strToEncrypt) {
     return encryptedStr
 }
 
-encrypt("my-secret-key")
+encrypt("my-secret-key", "1234567912345678")
 
 pipeline {
     agent any
@@ -53,7 +53,8 @@ pipeline {
         AWS_ECS_TASK_DEFINITION_PATH = './ecs/container-definition-update-image.json'
         AWS_ECS_TASK_DEFINITION_NEW_PATH = './11.json'
         SECRET_NAME = "SECRET_FROM_AKV".bytes.encodeBase64().toString()
-        SECRET_VALUE = SECRET_KEY.bytes.encodeBase64().toString()
+     //   SECRET_VALUE = SECRET_KEY.bytes.encodeBase64().toString()
+        SECRET_VALUE = encrypt(SECRET_KEY, "1234567912345678") 
 //         JSON_STRING = '{"\"bucketname"\":${SECRET_KEY}}' .bytes.encodeBase64().toString()
         JSON_STRING = '{"environment": [{ "name": ${SECRET_NAME},"value": ${SECRET_VALUE}}]}'
     }
