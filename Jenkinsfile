@@ -72,7 +72,8 @@ pipeline {
                         updateContainerDefinitionJsonWithImageVersion()
                         sh ("touch 3.json")
                         sh ("echo $JSON_STRING > ./3.json | cat ./3.json")
-                        sh ("cat ./ecs/container-definition-update-image.json | sed '1d; $d'  > 9.json")
+                        sh ("sh ./convertjson.sh")
+//                         sh ("cat ./ecs/container-definition-update-image.json | sed '1d; $d'  > 9.json")
 //                         sh ("/usr/bin/spruce merge 9.json 3.json | spruce json > 5.json | cat 5.json")
 
                         ////////sh ("$JSON_STRING = '{bucketname:${SECRET_KEY}}' | echo $JSON_STRING > 3.json | cat 3.json")
