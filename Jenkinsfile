@@ -119,3 +119,4 @@ def updateContainerDefinitionJsonWithImageVersion() {
     echo "task definiton json: ${containerDefinitionJson}"
     writeJSON file: AWS_ECS_TASK_DEFINITION_PATH, json: containerDefinitionJson
 }
+    }
