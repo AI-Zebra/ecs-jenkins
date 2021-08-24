@@ -31,7 +31,7 @@ pipeline {
         AWS_ECS_TASK_DEFINITION_PATH = './ecs/container-definition-update-image.json'
         AWS_ECS_TASK_DEFINITION_NEW_PATH = './11.json'
         SECRET_NAME = '"SECRET_FROM_AKV".bytes.encodeBase64().toString()'
-        SECRET_VALUE = '${SECRET_KEY}.bytes.encodeBase64().toString()'
+       // SECRET_VALUE = '${SECRET_KEY}.bytes.encodeBase64().toString()'
 //         JSON_STRING = '{"\"bucketname"\":${SECRET_KEY}}' .bytes.encodeBase64().toString()
         JSON_STRING = '{"environment": [{ "name": "SECRET_NAME","value": ${SECRET_VALUE}}]}'
     }
