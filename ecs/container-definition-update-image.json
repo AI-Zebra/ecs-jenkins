@@ -1,4 +1,6 @@
 [
+  
   {"cpu":256,"environment":[{"name":"MANAGEMENT_SERVER_PORT","value":"8081"},{"name":"SERVER_PORT","value":"8080"},{"name":"MANAGEMENT_SERVER1_PORT","value":"80811"},{"name":"SERVER1_PORT","value":"80801"}],"essential":true,"healthCheck":{"command":["CMD-SHELL","curl -f http://localhost:8081/actuator/health || exit 1"],"interval":30,"retries":3,"startPeriod":60,"timeout":5},"image":"","logConfiguration":{"logDriver":"awslogs","options":{"awslogs-group":"ch-dev-log-group","awslogs-region":"us-west-2","awslogs-stream-prefix":"ecs"}},"memory":512,"name":"userApi","portMappings":[{"containerPort":8080,"hostPort":8080,"protocol":"tcp"},{"containerPort":8081,"hostPort":8081,"protocol":"tcp"}]}
+
 ]
   
