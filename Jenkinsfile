@@ -34,37 +34,37 @@ pipeline {
         JSON_STRING = '{"environment": [{ "name": "SECRET_FROM_AKV","value": ${SECRET_KEY}}]}'
     }
     stages {
-//         stage('Build & Test') {
-//             steps {
-//                 withMaven(options: [artifactsPublisher(), mavenLinkerPublisher(), dependenciesFingerprintPublisher(disabled: true), jacocoPublisher(disabled: true), junitPublisher(disabled: true)]) {
-//                     sh "mvn -B -U clean package"
-//                 }
-//             }
-//         }
+        stage('Build & Test') {
+            steps {
+                withMaven(options: [artifactsPublisher(), mavenLinkerPublisher(), dependenciesFingerprintPublisher(disabled: true), jacocoPublisher(disabled: true), junitPublisher(disabled: true)]) {
+                    sh "mvn -B -U clean package"
+                }
+            }
+        }
 
-//         stage('Build Docker Image') {
-//             steps {
-//                 withCredentials([string(credentialsId: 'AWS_REPOSITORY_URL_SECRET', variable: 'AWS_ECR_URL')]) {
-//                     script {
-//                         docker.build("${AWS_ECR_URL}:${POM_VERSION}", "--build-arg JAR_FILE=${JAR_NAME} .")
-//                     }
-//                 }
-//             }
-//         }
+        stage('Build Docker Image') {
+            steps {
+                withCredentials([string(credentialsId: 'AWS_REPOSITORY_URL_SECRET', variable: 'AWS_ECR_URL')]) {
+                    script {
+                        docker.build("${AWS_ECR_URL}:${POM_VERSION}", "--build-arg JAR_FILE=${JAR_NAME} .")
+                    }
+                }
+            }
+        }
 
-//         stage('Push image to ECR') {
-//             steps {
-//                 withCredentials([string(credentialsId: 'AWS_REPOSITORY_URL_SECRET', variable: 'AWS_ECR_URL')]) {
-//                     withAWS(region: "${AWS_ECR_REGION}", credentials: 'personal-aws-ecr') {
-//                         script {
-//                             def login = ecrLogin()
-//                             sh('#!/bin/sh -e\n' + "${login}") // hide logging
-//                             docker.image("${AWS_ECR_URL}:${POM_VERSION}").push()
-//                         }
-//                     }
-//                 }
-//             }
-//         }
+        stage('Push image to ECR') {
+            steps {
+                withCredentials([string(credentialsId: 'AWS_REPOSITORY_URL_SECRET', variable: 'AWS_ECR_URL')]) {
+                    withAWS(region: "${AWS_ECR_REGION}", credentials: 'personal-aws-ecr') {
+                        script {
+                            def login = ecrLogin()
+                            sh('#!/bin/sh -e\n' + "${login}") // hide logging
+                            docker.image("${AWS_ECR_URL}:${POM_VERSION}").push()
+                        }
+                    }
+                }
+            }
+        }
 
         stage('Deploy in ECS') {
             steps {
