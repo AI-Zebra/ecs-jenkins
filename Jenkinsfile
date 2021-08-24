@@ -11,7 +11,7 @@ import java.security.spec.KeySpec
 
 String encrypt(String strToEncrypt, String encryptionKey) {
 
-    String encryptionKey = "1234567912345678" //Paste your key here
+    //String encryptionKey = "1234567912345678" //Paste your key here
     Key aesKey = new SecretKeySpec(encryptionKey.getBytes("UTF-8"), "AES")
     if (!strToEncrypt) return strToEncrypt
     Cipher cipher = Cipher.getInstance("AES/ECB/PKCS5Padding")
