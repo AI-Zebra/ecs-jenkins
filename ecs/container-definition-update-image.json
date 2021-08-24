@@ -45,5 +45,12 @@
       },
       "essential": true,
       "name": "userApi"
-    }
+    },
+     "environment": [
+                {
+                    "name": "variable",
+                    "value": "value"
+                }
+            ]
+
 ]
