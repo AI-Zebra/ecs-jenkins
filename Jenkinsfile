@@ -31,7 +31,7 @@ pipeline {
         AWS_ECS_TASK_DEFINITION_PATH = './ecs/container-definition-update-image.json'
     }
 
-//     stages {
+    stages {
 //         stage('Build & Test') {
 //             steps {
 //                 withMaven(options: [artifactsPublisher(), mavenLinkerPublisher(), dependenciesFingerprintPublisher(disabled: true), jacocoPublisher(disabled: true), junitPublisher(disabled: true)]) {
