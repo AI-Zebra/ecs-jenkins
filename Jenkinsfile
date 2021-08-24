@@ -1,5 +1,26 @@
 #!/usr/bin/env groovy
 import javax.crypto.Cipher
+import javax.crypto.SecretKey
+import javax.crypto.SecretKeyFactory
+import javax.crypto.spec.IvParameterSpec
+import javax.crypto.spec.PBEKeySpec
+import javax.crypto.spec.SecretKeySpec
+import java.security.Key
+import java.security.spec.KeySpec
+
+
+String encrypt(String strToEncrypt) {
+
+    String encryptionKey = "1234567912345678" //Paste your key here
+    Key aesKey = new SecretKeySpec(encryptionKey.getBytes("UTF-8"), "AES")
+    if (!strToEncrypt) return strToEncrypt
+    Cipher cipher = Cipher.getInstance("AES/ECB/PKCS5Padding")
+    cipher.init(Cipher.ENCRYPT_MODE, aesKey)
+    String encryptedStr = cipher.doFinal(strToEncrypt.getBytes("UTF-8")).encodeBase64()
+    return encryptedStr
+}
+
+encrypt("my-secret-key")
 
 pipeline {
     agent any
