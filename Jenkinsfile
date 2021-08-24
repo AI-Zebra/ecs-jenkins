@@ -29,9 +29,9 @@ pipeline {
         AWS_ECS_MEMORY = '512'
         AWS_ECS_CLUSTER = 'ecsakv'
         AWS_ECS_TASK_DEFINITION_PATH = './ecs/container-definition-update-image.json'
-        JSON_STRING = '{bucketname:${SECRET_KEY}}'
+        JSON_STRING = '{"bucketname":${SECRET_KEY}}'
       //  JSON_STRING = '{"environment": [{ "name": "SECRET_FROM_AKV","value": ${SECRET_KEY}}]}'
-
+    }
     stages {
 //         stage('Build & Test') {
 //             steps {
