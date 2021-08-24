@@ -17,7 +17,7 @@ pipeline {
     }
 
     environment {
-        def SECRET_KEY = credentials('secret-key') //Retrieved from AKV
+        SECRET_KEY = credentials('secret-key') //Retrieved from AKV
         POM_VERSION = getVersion()
         JAR_NAME = getJarName()
         AWS_ECR_REGION = 'us-west-2'
