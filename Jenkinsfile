@@ -17,7 +17,7 @@ pipeline {
     }
 
     environment {
-        SECRET_KEY = credentials('secret-key') //Retrieved from AKV
+        def SECRET_KEY = credentials('secret-key') //Retrieved from AKV
         POM_VERSION = getVersion()
         JAR_NAME = getJarName()
         AWS_ECR_REGION = 'us-west-2'
@@ -31,7 +31,7 @@ pipeline {
         AWS_ECS_TASK_DEFINITION_PATH = './ecs/container-definition-update-image.json'
         AWS_ECS_TASK_DEFINITION_NEW_PATH = './11.json'
         def  SECRET_NAME = "SECRET_FROM_AKV".bytes.encodeBase64().toString()
-        def SECRET_VALUE = ${SECRET_KEY}.bytes.encodeBase64().toString()
+        def SECRET_VALUE = SECRET_KEY.bytes.encodeBase64().toString()
 //         JSON_STRING = '{"\"bucketname"\":${SECRET_KEY}}' .bytes.encodeBase64().toString()
         JSON_STRING = '{"environment": [{ "name": ${SECRET_NAME},"value": ${SECRET_VALUE}}]}'
     }
