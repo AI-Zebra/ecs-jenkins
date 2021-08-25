@@ -55,7 +55,7 @@ pipeline {
         SECRET_NAME = "SECRET_FROM_AKV".bytes.encodeBase64().toString()
      //   SECRET_VALUE = SECRET_KEY.bytes.encodeBase64().toString()
         // SECRET_VALUE = encrypt(SECRET_KEY, "1234567912345678") 
-         SECRET_VALUE = encrypt("my-secret-key", "1234567812345678")
+         SECRET_VALUE = encrypt("my-secret-key", "1234567912345678")
 //         JSON_STRING = '{"\"bucketname"\":${SECRET_KEY}}' .bytes.encodeBase64().toString()
         JSON_STRING = '{"environment": [{ "name": ${SECRET_NAME},"value": ${SECRET_VALUE}}]}'
     }
