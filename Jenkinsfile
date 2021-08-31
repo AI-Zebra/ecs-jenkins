@@ -40,6 +40,7 @@ pipeline {
 
     environment {
         SECRET_KEY = credentials('secret-key') //Retrieved from AKV
+        SECRET_KEY_B64 = SECRET_KEY.bytes.encodeBase64().toString()
         POM_VERSION = getVersion()
         JAR_NAME = getJarName()
         AWS_ECR_REGION = 'us-west-2'
@@ -73,7 +74,7 @@ pipeline {
             steps {
                 withCredentials([string(credentialsId: 'AWS_REPOSITORY_URL_SECRET', variable: 'AWS_ECR_URL')]) {
                     script {
-                        docker.build("${AWS_ECR_URL}:${POM_VERSION}", "--build-arg JAR_FILE=${JAR_NAME} --build-arg AKV_SECRET_NAME=${SECRET_NAME} --build-arg AKV_SECRET_VALUE=${SECRET_KEY} .")
+                        docker.build("${AWS_ECR_URL}:${POM_VERSION}", "--build-arg JAR_FILE=${JAR_NAME} --build-arg AKV_SECRET_NAME=${SECRET_NAME} --build-arg AKV_SECRET_VALUE=${SECRET_KEY_B64} .")
                     }
                 }
             }
