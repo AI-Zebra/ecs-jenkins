@@ -62,13 +62,13 @@ pipeline {
         JSON_STRING = '{"environment": [{ "name": ${SECRET_NAME},"value": ${SECRET_VALUE}}]}'
     }
     stages {
-//         stage('Build & Test') {
-//             steps {
-//                 withMaven(options: [artifactsPublisher(), mavenLinkerPublisher(), dependenciesFingerprintPublisher(disabled: true), jacocoPublisher(disabled: true), junitPublisher(disabled: true)]) {
-//                     sh "mvn -B -U clean package"
-//                 }
-//             }
-//         }
+        stage('Build & Test') {
+            steps {
+                withMaven(options: [artifactsPublisher(), mavenLinkerPublisher(), dependenciesFingerprintPublisher(disabled: true), jacocoPublisher(disabled: true), junitPublisher(disabled: true)]) {
+                    sh "mvn -B -U clean package"
+                }
+            }
+        }
 
         stage('Build Docker Image') {
             steps {
